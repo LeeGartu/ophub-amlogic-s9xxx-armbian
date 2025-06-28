@@ -21,10 +21,10 @@ on:
       kernel_version:
         description: "Select kernel version"
         required: false
-        default: "5.10.160"
+        default: "5.10.160-rk35xx"
         type: choice
         options:
-          - 5.10.160
+          - 5.10.160-rk35xx
           - 5.4.y
           - 5.10.y
           - 5.15.y
