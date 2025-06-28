@@ -13,17 +13,18 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "unifreq"
+        default: "LeeGartu/unifreq-linux-5.10.y-rk35xx@dsi"
         type: choice
         options:
           - unifreq
-          - codesnas
+          - LeeGartu/unifreq-linux-5.10.y-rk35xx@dsi
       kernel_version:
         description: "Select kernel version"
         required: false
-        default: "5.4.y"
+        default: "5.10.160-rk35xx"
         type: choice
         options:
+          - 5.10.160-rk35xx
           - 5.4.y
           - 5.10.y
           - 5.15.y
@@ -39,7 +40,7 @@ on:
       kernel_auto:
         description: "Auto use the latest kernel"
         required: false
-        default: true
+        default: false
         type: boolean
       silent_log:
         description: "Use silent logging"
@@ -81,11 +82,11 @@ on:
       kernel_sign:
         description: "Set the kernel custom signature"
         required: false
-        default: "-ophub"
+        default: "-leegartu"
         type: choice
         options:
           - -ophub
-          - -yourname
+          - -leegartu
 
 env:
   TZ: America/New_York
@@ -151,7 +152,7 @@ jobs:
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Compile the kernel [ ${{ inputs.kernel_version }} ]
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: LeeGartu/ophub-amlogic-s9xxx-armbian
         if: ${{ steps.mapped.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: kernel
