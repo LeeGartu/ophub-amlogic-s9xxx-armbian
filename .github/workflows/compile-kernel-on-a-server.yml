@@ -13,19 +13,18 @@ on:
       kernel_source:
         description: "Select the kernel source"
         required: false
-        default: "LeeGartu/unifreq-linux-6.1.y-rockchip@dsi"
+        default: "LeeGartu/unifreq-linux-5.10.y-rk35xx@dsi"
         type: choice
         options:
           - unifreq
-          - LeeGartu
-          - LeeGartu/unifreq-linux-6.1.y-rockchip@dsi
+          - LeeGartu/unifreq-linux-5.10.y-rk35xx@dsi
       kernel_version:
         description: "Select kernel version"
         required: false
-        default: "6.1.115"
+        default: "5.10.160"
         type: choice
         options:
-          - 6.1.115
+          - 5.10.160
           - 5.4.y
           - 5.10.y
           - 5.15.y
