@@ -61,7 +61,7 @@ host_release="$(cat /etc/os-release | grep '^VERSION_CODENAME=.*' | cut -d'=' -f
 
 # Set the default for downloading kernel sources from github.com
 repo_owner="LeeGartu/unifreq-linux-5.10.y-rk35xx"
-repo_branch="dsi"
+repo_branch="main"
 build_kernel=("5.10.160")
 all_kernel=("5.4.y" "5.10.y" "5.15.y" "6.1.y" "6.6.y" "6.12.y")
 # Set whether to use the latest kernel, options: [ true / false ]
@@ -587,7 +587,7 @@ chroot_armbian() {
     # Always unmount armbian on exit
     trap unmount_armbian SIGINT
     echo -e "${INFO} Entering the chroot environment, please wait..."
-    chroot ${tag_rootfs} /bin/bash -c "/root/ubuntu_chroot_armbian.sh ${kernel_outname}"
+    chroot ${tag_rootfs} qemu-aarch64-static /bin/bash -c "/root/ubuntu_chroot_armbian.sh ${kernel_outname}"
     if [[ "${?}" -ne "0" || ! -f "${tag_rootfs}/boot/uInitrd-${kernel_outname}" ]]; then
         unmount_armbian
         error_msg "Create chroot uInitrd-${kernel_outname} file failed."
